@@ -2,14 +2,13 @@ const functions = require('firebase-functions');
 const request = require('request-promise');
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
 const config = require('./config.json')
 const Fixer = require('fixer-node')
 const fixer = new Fixer(config.accessKey_Fixer)
 const symbol = require('./currencyList')
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message'
 const LINE_HEADER = {
@@ -23,6 +22,7 @@ const runtimeOpts = {
 }
 
 exports.LineBot = functions.runWith(runtimeOpts).https.onRequest(async (req, res) => {
+    console.log(req.body.events);
     const receiveText = req.body.events[0].message
 
     res.status(200)
