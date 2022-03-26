@@ -49,6 +49,7 @@ exports.LineBot = functions.runWith(runtimeOpts).https.onRequest(async (req, res
     const firstArgument = arrText[0];
     const secondArgument = arrText[1];
     const thirdArgument = arrText[2];
+    const fourthArgument = arrText[3];
 
     if (arrText.length === 1) {
         // ex. 100 => 100 USD TO ... THB
@@ -74,7 +75,7 @@ exports.LineBot = functions.runWith(runtimeOpts).https.onRequest(async (req, res
     else if (arrText.length === 4 && arrText[2] === 'TO') {
         baseAmount = Number(firstArgument);
         baseCurrency = secondArgument;
-        targetCurrency = thirdArgument;
+        targetCurrency = fourthArgument;
     }
     else {
         return reply(req.body, 'โปรดใส่แพทเทิร์นให้ถูกต้อง')

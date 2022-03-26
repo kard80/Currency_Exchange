@@ -1,8 +1,8 @@
-export function isNumber(input) {
+function isNumber(input) {
     return input * 0 === 0
 }
 
-export function modifiedOutput(input) {
+function modifiedOutput(input) {
     const result = {
         baseAmount: 1,
         baseCurrency: 'USD',
@@ -14,5 +14,10 @@ export function modifiedOutput(input) {
         result[key] = input[key];
     };
 
-    return `ตอนนี้ ${result.amount} ${result.baseCurrency} เท่ากับ ${result.targetAmount} ${result.targetCurrency}`;
+    return `ตอนนี้ ${result.baseAmount} ${result.baseCurrency} เท่ากับ ${result.targetAmount} ${result.targetCurrency}`;
 }
+
+module.exports = {
+    isNumber,
+    modifiedOutput
+};
